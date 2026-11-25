@@ -1,0 +1,33 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.anas.myretro'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.anas.myretro"
+        minSdk 21
+        // 22 = Android 5.1 : les permissions sont accordees a l'installation
+        targetSdk 22
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // OkHttp 3.12.x : derniere branche qui supporte Android 5.x
+    implementation 'com.squareup.okhttp3:okhttp:3.12.13'
+}
