@@ -1,13 +1,18 @@
 package com.anas.myretro;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -21,6 +26,12 @@ public class Downloader {
             .connectTimeout(20, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .build();
+
+    /** Extensions de jeux reconnues (doivent correspondre a MainActivity.coreFor). */
+    private static final String[] ROM_EXT = {
+            ".nes", ".fds", ".gb", ".gbc", ".gba", ".sfc", ".smc",
+            ".md", ".gen", ".smd", ".cue", ".chd", ".pbp"
+    };
 
     private static Request build(String url) throws IOException {
         HttpUrl u = HttpUrl.parse(url.trim());
@@ -68,7 +79,55 @@ public class Downloader {
         return n;
     }
 
-    /** Telecharge url dans dir et retourne le nom du fichier cree. */
+    private static boolean isRom(String name) {
+        String l = name.toLowerCase(Locale.US);
+        for (String e : ROM_EXT) {
+            if (l.endsWith(e)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** Extrait d'un zip uniquement les fichiers de jeux, a plat dans dir (pas de sous-dossiers). */
+    private static List<String> unzipRoms(File zip, File dir) throws IOException {
+        List<String> out = new ArrayList<>();
+        ZipInputStream zin = new ZipInputStream(new FileInputStream(zip));
+        try {
+            ZipEntry e;
+            while ((e = zin.getNextEntry()) != null) {
+                if (e.isDirectory()) {
+                    continue;
+                }
+                String entryName = e.getName();
+                int cut = Math.max(entryName.lastIndexOf('/'), entryName.lastIndexOf('\\'));
+                String base = entryName.substring(cut + 1);
+                if (base.isEmpty() || !isRom(base)) {
+                    continue;
+                }
+                base = sanitize(base);
+                OutputStream o = new FileOutputStream(new File(dir, base));
+                try {
+                    byte[] buf = new byte[8192];
+                    int n;
+                    while ((n = zin.read(buf)) != -1) {
+                        o.write(buf, 0, n);
+                    }
+                } finally {
+                    o.close();
+                }
+                out.add(base);
+            }
+        } finally {
+            zin.close();
+        }
+        return out;
+    }
+
+    /**
+     * Telecharge url dans dir. Si c'est un zip contenant des jeux, les jeux sont extraits
+     * et le zip est supprime. Retourne le nom (ou les noms) des fichiers de jeu obtenus.
+     */
     public static String download(String url, File dir, WebDav.Progress progress) throws IOException {
         Response r = CLIENT.newCall(build(url)).execute();
         try {
@@ -113,6 +172,22 @@ public class Downloader {
             }
             if (!tmp.renameTo(dest)) {
                 throw new IOException("لا يمكن حفظ " + name);
+            }
+
+            if (name.toLowerCase(Locale.US).endsWith(".zip")) {
+                List<String> roms = unzipRoms(dest, dir);
+                if (!roms.isEmpty()) {
+                    dest.delete();
+                    StringBuilder sb = new StringBuilder();
+                    for (String s : roms) {
+                        if (sb.length() > 0) {
+                            sb.append(", ");
+                        }
+                        sb.append(s);
+                    }
+                    return sb.toString();
+                }
+                return name + " (zip: ما لقيت حتى لعبة داخلو)";
             }
             return name;
         } finally {

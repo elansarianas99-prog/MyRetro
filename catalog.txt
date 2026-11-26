@@ -1,0 +1,12 @@
+# كتالوج MyRetro: كل سطر لعبة بهاد الشكل:  التصنيف|اسم اللعبة|رابط التحميل المباشر
+# الأسطر اللي كتبدا بـ # كتتجاهل. التطبيق كيقرا هاد الملف من الإنترنت، فتقدر تزيد ألعاب بلا ما تبني APK جديد.
+# الرابط خاصو يكون مباشر لملف اللعبة (.nes .gb .gbc .gba .sfc .smc .md ...) ولا ملف zip فيه اللعبة.
+# زيد غير ألعاب مجانية قانونية (homebrew نشراها أصحابها) ولا ألعاب عندك الحق فيها.
+#
+# مثال:
+# ألغاز|اسم اللعبة (GB)|https://example.com/game.gb
+#
+ألغاز|Concentration Room (NES)|https://pineight.com/croom/ConcentrationRoom-0.02.zip
+حركة|Thwaite (NES)|https://pineight.com/nes/thwaite-0.03.zip
+قتال ولعب جماعي|RHDE: Furniture Fight (NES - لاعبين)|https://pineight.com/nes/rhde-day342.zip
+ألغاز|Vitamins (GBA - نسخة تجريبية)|https://pineight.com/gba/vitamins-m1.zip

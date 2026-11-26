@@ -7,6 +7,9 @@
     <!-- Android 11+ : acces a tous les fichiers (dossiers ROMs / saves de RetroArch) -->
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
+    <!-- Onglet "Programmes" : liste des applications installees (Android 11+) -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
     <!-- Android 11+ : autorise MyRetro a voir et lancer RetroArch -->
     <queries>
         <package android:name="com.retroarch" />

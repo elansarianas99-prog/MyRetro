@@ -1,0 +1,12 @@
+# الفئة|الاسم|الرابط|الجهاز
+# هاد الملف كيتحمل مع التطبيق. تقدر تزيد فيه سطور بنفس الصيغة.
+# إلا كان الرابط ديال ملف لعبة (.gb .gbc .gba .nes .sfc .md .zip) كيتحمل مباشرة، وإلا كيتحل فـ المتصفح.
+1 - ألعاب مجانية مميزة|Tobu Tobu Girl (أركيد ومنصات)|https://tangramgames.itch.io/tobutobugirl|Game Boy
+1 - ألعاب مجانية مميزة|Tobu Tobu Girl Deluxe (أركيد ومنصات)|https://tangramgames.itch.io/tobu-tobu-girl-deluxe|Game Boy Color
+1 - ألعاب مجانية مميزة|Anguna (أكشن ومغامرة)|https://gauauu.itch.io/anguna|Game Boy Advance
+1 - ألعاب مجانية مميزة|Inheritors of the Oubliette|https://github.com/DrLancer-X/inheritors-of-the-oubliette/releases/|Game Boy Advance
+2 - تصفح حسب الجهاز (ألعاب homebrew)|NES: ألعاب homebrew|https://itch.io/games/tag-homebrew/tag-nes|NES
+2 - تصفح حسب الجهاز (ألعاب homebrew)|Game Boy Advance: ألعاب مجانية|https://itch.io/games/free/tag-gameboy-advance/tag-homebrew|Game Boy Advance
+2 - تصفح حسب الجهاز (ألعاب homebrew)|Mega Drive: ألعاب مجانية|https://itch.io/games/free/tag-mega-drive|Mega Drive
+2 - تصفح حسب الجهاز (ألعاب homebrew)|كل الأجهزة: ألعاب homebrew مجانية|https://itch.io/games/free/tag-homebrew|
+3 - دليل|ألعاب قانونية مجانية لـ RetroPie و Lakka|https://magazine.raspberrypi.com/articles/homebrew-retro-gaming-legal-roms-for-retropie-and-lakka|

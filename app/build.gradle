@@ -11,8 +11,8 @@ android {
         minSdk 21
         // 34 = Android 14 : l'appli s'installe sur les telephones recents ET sur Android 5.1
         targetSdk 34
-        versionCode 6
-        versionName "3.3"
+        versionCode 8
+        versionName "4.1"
     }
 
     // Meme cle de signature a chaque build : la mise a jour s'installe par-dessus
