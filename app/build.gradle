@@ -9,10 +9,21 @@ android {
     defaultConfig {
         applicationId "com.anas.myretro"
         minSdk 21
-        // 22 = Android 5.1 : les permissions sont accordees a l'installation
-        targetSdk 22
-        versionCode 1
-        versionName "1.0"
+        // 34 = Android 14 : l'appli s'installe sur les telephones recents ET sur Android 5.1
+        targetSdk 34
+        versionCode 6
+        versionName "3.3"
+    }
+
+    // Meme cle de signature a chaque build : la mise a jour s'installe par-dessus
+    // l'ancienne version et les reglages (login, dossiers...) sont conserves.
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
     }
 
     buildTypes {
